@@ -24,6 +24,12 @@ resource "azurerm_resource_group_template_deployment" "aa" {
 
   parameters_content = local.template_parameters
   template_content   = local.template_content
+
+  lifecycle {
+    ignore_changes = [
+      tags, template_content
+    ]
+  }
 }
 
 #-------------------------------------------------------------------------
