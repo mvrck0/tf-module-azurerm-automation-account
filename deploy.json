@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountName": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": {}
+    },
+    "publicNetworkAccess": {
+      "type": "bool",
+      "defaultValue": true
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[parameters('accountName')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('tags')]",
+      "identity": {
+        "type": "systemassigned"
+      },
+      "properties": {
+        "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+        "sku": {
+          "name": "Basic"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "accountName": {
+      "type": "string",
+      "value": "[parameters('accountName')]"
+    },
+    "automationAccount": {
+      "type": "object",
+      "value": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('accountName')), '2020-01-13-preview', 'Full')]"
+    }
+  }
+}
