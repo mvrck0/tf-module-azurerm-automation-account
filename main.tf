@@ -36,19 +36,19 @@ resource "azurerm_resource_group_template_deployment" "aa" {
 # Variables
 #-------------------------------------------------------------------------
 variable "name" {
-  type = string
+  type        = string
   description = "The name of the automation account"
 }
 
 variable "resource_group_name" {
-  type = string
+  type        = string
   description = "The name of an existing resource group"
 }
 
 variable "public_network_access" {
-  type = bool
+  type        = bool
   description = "public_network_access"
-  default = true
+  default     = true
 }
 
 variable "tags" {
@@ -59,9 +59,9 @@ variable "tags" {
 }
 
 variable "deployment_name" {
-  type = string
+  type        = string
   description = "The deployment-name that will appear on the resourcegroup in azure"
-  default = "TFAutomationAccount"
+  default     = "TFAutomationAccount"
 }
 
 #-------------------------------------------------------------------------
