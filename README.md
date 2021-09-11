@@ -4,10 +4,10 @@ A terraform module that adds identity features to azurerm_automation account usi
 
 ## Basic example
 ```hcl
-module "automation-account" {
-  source = "https://github.com/mvrck0/tf-module-azurerm-automation-account.git?ref=master"
-  name = "example-automation-account"
-  sku = "Basic"
+module "aa" {
+  source = "git::https://github.com/mvrck0/tf-module-azurerm-automation-account.git?ref=main"
+  name   = "example-automation-account"
+  sku    = "Basic"
   tags = {
     environment = "development"
   }
@@ -15,10 +15,17 @@ module "automation-account" {
 
 
 data "azurerm_automation_account" "aa" {
-  name                = jsondecode(azurerm_ resource_group_template_deployment.aa.output_content).accountName.value
-  resource_group_name = data.azurerm_resource_group.rg.name
+  name                = module.aa.name
+  resource_group_name = module.aa.resource_group_name
 }
 
+output "automation_account_id" {
+  value = module.aa.id
+}
+
+output "aa" {
+  value = data.azurerm_automation_account.aa
+}
 ```
 
 # Variables
