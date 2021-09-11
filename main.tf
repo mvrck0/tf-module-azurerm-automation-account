@@ -74,7 +74,7 @@ output "id" {
 }
 
 output "name" {
-  value = var.account_name
+  value = var.name
 }
 
 output "resource_group_name" {
