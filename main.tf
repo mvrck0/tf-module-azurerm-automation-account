@@ -1,5 +1,4 @@
 locals {
-  deployment_name = "TFAutomationAccount"
   template_parameters = jsonencode({
     accountName = {
       value = var.name
